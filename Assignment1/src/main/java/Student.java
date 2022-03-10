@@ -5,11 +5,11 @@ public class Student {
 
     // student name
     private String name;
-    // date of birth
+    // student date of birth
     private Integer birthDate;
-    // cumulative GPA
+    // student cumulative GPA
     private Float gpa;
-    // department
+    // student department
     private String department;
 
     // NoArgs/When creating an object, it is created without any factors.

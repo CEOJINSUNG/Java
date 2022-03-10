@@ -9,32 +9,37 @@ public class Task2 {
         Scanner scanner = new Scanner(System.in);
 
         // Declare day, money, savings variable
+        // total days for savings
         int day;
+        // first week money 2000, every week money will be increased 1000
         int money = 2000;
+        // this is total money of savings and will be printed out
         int totalSaving = 0;
 
         // Request number of days
         System.out.print("Enter number of days: ");
         day = scanner.nextInt();
 
-        // a means week
-        int a = day/7;
+        // week is calculated by day/7
+        int week = day/7;
 
-        // b means remain days
-        int b = day%7;
+        // remain means day%7
+        int remain = day%7;
 
-        // if day is over 7, consider a & b. if not? only consider the b for calculating savings
+        // if day is over 7, consider week & remain. if not? only consider the remain for calculating savings
         if (day >= 7) {
             // After one week, savings and money will increase
-            for (int i = 0; i < a; i++) {
+            for (int i = 0; i < week; i++) {
                 totalSaving += (7 * money);
                 // After one week, money change
                 money += 1000;
             }
 
-            totalSaving += (b * money);
+            // finally, add the remain money
+            totalSaving += (remain * money);
         } else {
-            totalSaving += (b * money);
+            // just add remain money
+            totalSaving += (remain * money);
         }
 
         // After Calculating money, Print the total saving money

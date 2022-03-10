@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-// You can
+// This file is for Task1
 public class Main {
 
     public static void main(String[] args) {

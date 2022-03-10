@@ -9,7 +9,9 @@ public class Task3 {
         Scanner scanner = new Scanner(System.in);
 
         // Declare number, power of above number variable for input
+        // number is first argument
         int number;
+        // powerOfNumber is second argument for knowing whether this is number's exponential or not
         int powerOfNumber;
 
         // Declare power, output variable for output
