@@ -41,8 +41,8 @@ public class AirPods extends Product {
             total += 200;
         }
 
-        System.out.println("Total cost for one AirPods: $" + String.format("%2.f", total));
+        System.out.println("Total cost for one AirPods: $" + String.format("%.2f", total));
         this.setTotalCost((int) total * getQuantity());
-        System.out.println("Total cost (quantity x "+ getQuantity() +"): $" + String.format("%2.f", (double) getTotalCost()));
+        System.out.println("Total cost (quantity x "+ getQuantity() +"): $" + String.format("%.2f", (double) getTotalCost()));
     }
 }

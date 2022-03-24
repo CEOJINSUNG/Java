@@ -55,8 +55,10 @@ public class MacBook extends Product {
         int size = scanner.nextInt(); // Type of size
         System.out.print("Color (base, Gold, Silver): ");
         String color = scanner.nextLine(); // Type of color
+
         System.out.print("Memory (128, 256, 512): ");
         int memory = scanner.nextInt(); // Type of memory
+
         System.out.print("How many do you want to buy: ");
         int quantity = scanner.nextInt(); // Type for quantity of user selections
 
@@ -121,8 +123,8 @@ public class MacBook extends Product {
             }
         }
 
-        System.out.println("Total cost for one MacBook: $" + String.format("%2.f", total));
+        System.out.println("Total cost for one MacBook: $" + String.format("%.2f", total));
         this.setTotalCost((int) total * getQuantity());
-        System.out.println("Total cost (quantity x "+ getQuantity() +"): $" + String.format("%2.f", (double) getTotalCost()));
+        System.out.println("Total cost (quantity x "+ getQuantity() +"): $" + String.format("%.2f", (double) getTotalCost()));
     }
 }
