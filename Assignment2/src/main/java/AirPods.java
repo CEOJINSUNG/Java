@@ -34,7 +34,8 @@ public class AirPods extends Product {
         System.out.println();
         double total = (double) getBasePrice();
 
-        // Detect the different model and plus the options price
+        // Detect the different model
+        // and plus the options price
         if (getModel().equals("AirPodsPro")) {
             total += 100;
         }

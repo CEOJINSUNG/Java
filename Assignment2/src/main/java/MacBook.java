@@ -86,7 +86,7 @@ public class MacBook extends Product {
                 System.out.println("Color (" + color + ") ------ +" + (color.equals("Gold") ? "$20" : "$10"));
             }
             if (memory != 128) {
-                System.out.println("Memory (" + memory + ") ------ +" + (memory == 256 ? "+$100" : "+$300"));
+                System.out.println("Memory (" + memory + ") ------ +" + (memory == 256 ? "$100" : "$300"));
             }
         }
     }
@@ -96,7 +96,8 @@ public class MacBook extends Product {
         System.out.println();
         double total = (double) getBasePrice();
 
-        // Detect the different [model, size, color, memory] and plus the options price
+        // Detect the different [model, size, color, memory]
+        // and plus the options price
         if (getModel().equals("Pro")) {
             total += 200;
         }

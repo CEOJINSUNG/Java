@@ -51,6 +51,7 @@ public class Main {
                 airPods.calculateCost();
             }
 
+            // Ask if customer continue to purchase
             System.out.print("Do you want to purchase something else (Yes: 1, No: 0): ");
             int purchase = scanner.nextInt();
 
