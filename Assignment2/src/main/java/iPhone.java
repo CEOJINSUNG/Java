@@ -36,17 +36,16 @@ public class iPhone extends Product {
 
         Scanner scanner = new Scanner(System.in);
 
-        String model = scanner.next(); // Type of model
-        String color = scanner.next(); // Type of color
-        int memory = scanner.nextInt(); // Type of memory
-        int quantity = scanner.nextInt(); // Type for quantity of user selections
-
         // Get Options From User
         System.out.println("Base cost of the iPhone: $" + getBasePrice());
-        System.out.println("Which model do you want (iPhone12 or iPhone13): " + model);
-        System.out.println("Color (base, Gold, Silver): " + color);
-        System.out.println("Memory (64, 128, 256, 512): " + memory);
-        System.out.println("How many do you want to buy: " + quantity);
+        System.out.print("Which model do you want (iPhone12 or iPhone13): ");
+        String model = scanner.nextLine(); // Type of model
+        System.out.print("Color (base, Gold, Silver): ");
+        String color = scanner.nextLine(); // Type of color
+        System.out.print("Memory (64, 128, 256, 512): ");
+        int memory = scanner.nextInt(); // Type of memory
+        System.out.print("How many do you want to buy: ");
+        int quantity = scanner.nextInt(); // Type for quantity of user selections
 
         // Set Options From Scanner
         this.setModel(model);

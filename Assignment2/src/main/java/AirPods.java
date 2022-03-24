@@ -10,13 +10,12 @@ public class AirPods extends Product {
 
         Scanner scanner = new Scanner(System.in);
 
-        String model = scanner.next(); // Type of model
-        int quantity = scanner.nextInt(); // Type for quantity of user selections
-
         // Get Options From User
         System.out.println("Base cost of the iPhone: $" + getBasePrice());
-        System.out.println("Which model do you want (AirPods3 or AirPodsPro or AirPodsMax): " + model);
-        System.out.println("How many do you want to buy: " + quantity);
+        System.out.print("Which model do you want (AirPods3 or AirPodsPro or AirPodsMax): ");
+        String model = scanner.nextLine(); // Type of model
+        System.out.print("How many do you want to buy: ");
+        int quantity = scanner.nextInt(); // Type for quantity of user selections
 
         // Set Options From Scanner
         this.setModel(model);
