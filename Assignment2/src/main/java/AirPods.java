@@ -1,0 +1,49 @@
+import java.util.Scanner;
+
+// AirPods is child of Product
+public class AirPods extends Product {
+
+    @Override
+    public void getUserSelection() {
+        // AirPods base price is $120
+        this.setBasePrice(1000);
+
+        Scanner scanner = new Scanner(System.in);
+
+        String model = scanner.next(); // Type of model
+        int quantity = scanner.nextInt(); // Type for quantity of user selections
+
+        // Get Options From User
+        System.out.println("Base cost of the iPhone: $" + getBasePrice());
+        System.out.println("Which model do you want (AirPods3 or AirPodsPro or AirPodsMax): " + model);
+        System.out.println("How many do you want to buy: " + quantity);
+
+        // Set Options From Scanner
+        this.setModel(model);
+        this.setQuantity(quantity);
+
+        // if there is another options except base, print out for check
+        if (!model.equals("AirPods3")) {
+            System.out.println("===== check =====");
+            System.out.println("Model (" + model + ") ------ +" + (model.equals("AirPodsPro") ? "$100" : "$200"));
+        }
+
+    }
+
+    @Override
+    public void calculateCost() {
+        double total = (double) getBasePrice();
+
+        // Detect the different model and plus the options price
+        if (getModel().equals("AirPodsPro")) {
+            total += 100;
+        }
+        if (getModel().equals("AirPodsMax")) {
+            total += 200;
+        }
+
+        System.out.println("Total cost for one AirPods: $" + String.format("%2.f", total));
+        this.setTotalCost((int) total * getQuantity());
+        System.out.println("Total cost (quantity x "+ getQuantity() +"): $" + String.format("%2.f", (double) getTotalCost()));
+    }
+}
