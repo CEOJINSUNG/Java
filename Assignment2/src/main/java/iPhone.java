@@ -75,6 +75,7 @@ public class iPhone extends Product {
 
     @Override
     public void calculateCost() {
+        System.out.println();
         double total = (double) getBasePrice();
 
         // Detect the different [model, color, memory] and plus the options price

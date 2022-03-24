@@ -53,6 +53,10 @@ public class MacBook extends Product {
         String model = scanner.nextLine(); // Type of model
         System.out.print("Size (13, 15): ");
         int size = scanner.nextInt(); // Type of size
+
+        // 개행 문자 제거
+        scanner.nextLine();
+
         System.out.print("Color (base, Gold, Silver): ");
         String color = scanner.nextLine(); // Type of color
 
@@ -89,6 +93,7 @@ public class MacBook extends Product {
 
     @Override
     public void calculateCost() {
+        System.out.println();
         double total = (double) getBasePrice();
 
         // Detect the different [model, size, color, memory] and plus the options price

@@ -6,12 +6,12 @@ public class AirPods extends Product {
     @Override
     public void getUserSelection() {
         // AirPods base price is $120
-        this.setBasePrice(1000);
+        this.setBasePrice(120);
 
         Scanner scanner = new Scanner(System.in);
 
         // Get Options From User
-        System.out.println("Base cost of the iPhone: $" + getBasePrice());
+        System.out.println("Base cost of the AirPods: $" + getBasePrice());
         System.out.print("Which model do you want (AirPods3 or AirPodsPro or AirPodsMax): ");
         String model = scanner.nextLine(); // Type of model
         System.out.print("How many do you want to buy: ");
@@ -31,6 +31,7 @@ public class AirPods extends Product {
 
     @Override
     public void calculateCost() {
+        System.out.println();
         double total = (double) getBasePrice();
 
         // Detect the different model and plus the options price
