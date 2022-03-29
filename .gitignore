@@ -2,3 +2,6 @@
 Assignment2/src/main/.DS_Store
 *.bin
 *.lock
+
+/*/.gradle
+/*/.idea
