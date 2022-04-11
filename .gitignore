@@ -7,3 +7,9 @@ Assignment2/src/main/.DS_Store
 /*/.idea
 /*/build
 /*/out
+.idea/.name
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+.idea/workspace.xml
+.DS_Store
