@@ -20,7 +20,7 @@ public abstract class Food implements Payment {
     }
 
     @Override
-    public void calculateCost() {
-
+    public int calculateCost() {
+        return 0;
     }
 }
