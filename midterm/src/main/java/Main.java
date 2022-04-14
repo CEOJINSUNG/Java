@@ -55,7 +55,7 @@ public class Main {
                     + "3. Cucumbers - (+50 won) \n"
                     + "4. Olives - (+50 won) \n"
                     + "0. Skip \n"
-                    + "Select Ingredients (1-4): "
+                    + "Select Ingredients (1-4): 1"
             );
             int ingredientsType = scanner.nextInt();
 
@@ -87,16 +87,14 @@ public class Main {
         int beverageType = scanner.nextInt();
         beverage.setType(beverageType);
 
-        // Ask if user wants ice and beverage type is not zero
-        if (beverage.getType() != 0) {
-            System.out.print(
-                "=================== \n"
-                    + "With ice? (0 [no] or 1[yes]): "
-            );
-            // transform int to boolean after get values
-            int ice = scanner.nextInt();
-            beverage.setIce(ice == 1);
-        }
+        // ask if user wants ice
+        System.out.print(
+            "=================== \n"
+            + "With ice? (0 [no] or 1[yes]): "
+        );
+        // transform int to boolean after get values
+        int ice = scanner.nextInt();
+        beverage.setIce(ice == 1);
 
         // Get Extra
         Extra extra = new Extra();
@@ -106,35 +104,9 @@ public class Main {
             + "2. French Fries - 1,300 won \n"
             + "3. Chips - 1,700 won \n"
             + "0. Skip \n"
-            + "Select Beverage (1-3): "
+            + "Select Beverage (1-3): \n"
         );
         int extraType = scanner.nextInt();
         extra.setType(extraType);
-
-        // Print a final Receipt
-        int burgerTotalPrice = burger.calculateCost();
-        int beverageTotalPrice = beverage.calculateCost();
-        int extraTotalPrice = extra.calculateCost();
-
-        System.out.println("===================");
-        System.out.println("| Burger (with cheese and ingredients): " + Integer.toString(burgerTotalPrice));
-
-        // Only if type of beverage is not zero
-        if (beverage.getType() != 0) {
-            // Ask whether beverage includes ice
-            if (beverage.isIce()) {
-                System.out.println("| Beverage (with ice): " + Integer.toString(beverageTotalPrice));
-            } else {
-                System.out.println("| Beverage (without ice): " + Integer.toString(beverageTotalPrice));
-            }
-        }
-
-        // Ask whether extra exists
-        if (extra.getType() != 0) { // if extra type is not zero, it means there is another extra
-            System.out.println("| Extra: " + Integer.toString(extraTotalPrice));
-        }
-
-        // Print out a total price
-        System.out.println("| Total: " + Integer.toString(burgerTotalPrice + beverageTotalPrice + extraTotalPrice));
     }
 }
