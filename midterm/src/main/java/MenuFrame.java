@@ -95,7 +95,7 @@ public class MenuFrame extends JFrame {
         //======================BOTTOM LABEL=========================
         // This Element is for bottom design
         bottomLabel = new JLabel();
-        bottomLabel.setText("READY TO ORDER");
+        bottomLabel.setText("READY TO ORDER!");
 
         // For changing background color, opaque and borderpainted setting should be changed
         bottomLabel.setOpaque(true);
@@ -103,6 +103,14 @@ public class MenuFrame extends JFrame {
         bottomLabel.setForeground(Color.WHITE);
         bottomLabel.setHorizontalAlignment(JLabel.CENTER); // text align center
         container.add(bottomLabel, BorderLayout.SOUTH); // Bottom Button is in the South
+    }
+
+    public static void main(String[] args) {
+        // Initially, shows the panel
+        MenuFrame menuFrame = new MenuFrame();
+        menuFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        menuFrame.setSize(500, 300);
+        menuFrame.setVisible(true);
     }
 
 }
