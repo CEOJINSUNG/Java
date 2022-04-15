@@ -1,8 +1,15 @@
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        // Initially, shows the panel
+        MenuFrame menuFrame = new MenuFrame();
+        menuFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        menuFrame.setSize(500, 300);
+        menuFrame.setVisible(true);
+
         Scanner scanner = new Scanner(System.in);
 
         // Get the type of burger
