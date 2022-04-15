@@ -9,6 +9,11 @@ public class MenuFrame extends JFrame {
     private JButton beverageButton;
     private JButton extraButton;
 
+    // EAST INFORMATION ELEMENTS
+    private JPanel eastPanel;
+    private JTextArea board;
+    private JLabel informationPanel;
+
     // In frame, logo is at top and "READY TO ORDER!" is at bottom
     private JLabel topLabel;
     private JLabel bottomLabel;
@@ -58,8 +63,34 @@ public class MenuFrame extends JFrame {
         westPanel.add(beverageButton);
         westPanel.add(extraButton);
 
-        // Finally, add panel into jframe
+        // Finally, add panel into frame
         container.add(westPanel, BorderLayout.WEST);
+
+        //======================EAST INFORMATION PANEL=========================
+        eastPanel = new JPanel();
+        eastPanel.setLayout(new BoxLayout(eastPanel, BoxLayout.Y_AXIS));
+        eastPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 15));
+
+        // Second, information panel is positioning below textarea
+        informationPanel = new JLabel();
+        informationPanel.setText("Information Panel");
+
+        // Set label font, style, name
+        informationPanel.setFont(new Font("", Font.BOLD | Font.ITALIC, 14));
+        informationPanel.setHorizontalAlignment(JLabel.CENTER);
+        informationPanel.setOpaque(true);
+        informationPanel.setBackground(Color.ORANGE);
+
+        // For changing label size, three components should be used
+        informationPanel.setMinimumSize(new Dimension(270, 16));
+        informationPanel.setPreferredSize(new Dimension(270, 16));
+        informationPanel.setMaximumSize(new Dimension(270, 16));
+
+        // Add each component into east panel
+        eastPanel.add(informationPanel);
+
+        // Finally, add panel into frame
+        container.add(eastPanel, BorderLayout.EAST);
 
         //======================BOTTOM LABEL=========================
         // This Element is for bottom design
