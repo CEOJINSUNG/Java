@@ -1,4 +1,4 @@
-public class Ingredients extends Food {
+public class Ingredient extends Food {
     @Override
     public int calculateCost() {
         int type = this.getType();

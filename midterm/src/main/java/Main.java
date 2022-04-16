@@ -44,9 +44,9 @@ public class Main {
 
         // Get Ingredients
         // For getting multiple ingredients, declare array of ingredient
-        ArrayList<Ingredients> ingredients = new ArrayList<>();
+        ArrayList<Ingredient> ingredients = new ArrayList<>();
         while (true) {
-            Ingredients ingredient = new Ingredients();
+            Ingredient ingredient = new Ingredient();
             System.out.print(
                 "=================== \n"
                     + "Select Ingredients: \n"

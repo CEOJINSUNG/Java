@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class Burger extends Food {
     Cheese cheeseObject;
-    ArrayList<Ingredients> ingredients;
+    ArrayList<Ingredient> ingredients;
 
     public Cheese getCheeseObject() {
         return cheeseObject;
@@ -12,11 +12,11 @@ public class Burger extends Food {
         this.cheeseObject = cheeseObject;
     }
 
-    public ArrayList<Ingredients> getIngredients() {
+    public ArrayList<Ingredient> getIngredients() {
         return ingredients;
     }
 
-    public void setIngredients(ArrayList<Ingredients> ingredients) {
+    public void setIngredients(ArrayList<Ingredient> ingredients) {
         this.ingredients = ingredients;
     }
 
@@ -28,7 +28,7 @@ public class Burger extends Food {
         int ingredientsPrice = 0;
 
         // for each ingredient, add price
-        for (Ingredients element : this.ingredients) {
+        for (Ingredient element : this.ingredients) {
             System.out.print(element.getType());
             ingredientsPrice += element.calculateCost();
         }
