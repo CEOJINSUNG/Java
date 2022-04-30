@@ -31,7 +31,7 @@ public class MenuFrame extends JFrame {
         ImageIcon logo = new ImageIcon(getClass().getResource("img/subway_logo_skku.png"));
         topLabel = new JLabel();
 
-        // opaque should be true for chaging its background color
+        // opaque should be true for changing its background color
         topLabel.setOpaque(true);
         topLabel.setIcon(logo); // add icon into topLabel
         topLabel.setBackground(Color.WHITE);
