@@ -466,26 +466,30 @@ public class SkkuForm extends JFrame {
                 }
             }
 
-            // 7. personal statement
+            // 7. personal statement check
             if (personalStatementInput.getText().length() < 100) {
                 result += (Integer.toString(num) + ". Your Personal Statement must be at least 100 words \n");
                 num++;
             }
 
+            // This is for the checking popup
             jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             jFrame.setSize(500, 300);
             jFrame.setVisible(true);
             jFrame.setLayout(new GridBagLayout());
 
             jTextArea = new JTextArea();
+            // when all tests pass
             if (result.length() == 0) {
                 jTextArea.setText("Successfully Submitted");
                 jFrame.setTitle("Success Message");
             } else {
+                // if there is problem
                 jTextArea.setText(result);
                 jFrame.setTitle("You have following problems");
             }
 
+            // popup ui
             JButton jButton = new JButton("OK");
             jButton.addActionListener(new CloseHandler());
 
@@ -497,6 +501,7 @@ public class SkkuForm extends JFrame {
             jFrame.add(jButton, gbc);
         }
 
+        // assign close function in ok button
         private class CloseHandler implements ActionListener{
             @Override
             public void actionPerformed(ActionEvent e) {
