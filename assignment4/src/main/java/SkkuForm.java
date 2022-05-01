@@ -261,6 +261,7 @@ public class SkkuForm extends JFrame {
         personalStatementInput.setPreferredSize(new Dimension(500, 60));
         personalStatementInput.setMaximumSize(new Dimension(500, 60));
         personalStatementInput.setBackground(Color.lightGray);
+        personalStatementInput.setLineWrap(true);
 
         personalStatementBox.add(personalStatement);
         personalStatementBox.add(personalStatementInput);
@@ -362,106 +363,144 @@ public class SkkuForm extends JFrame {
         skkuForm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         skkuForm.setSize(900, 650);
         skkuForm.setVisible(true);
+        skkuForm.setTitle("SKKU New Students Enrollment");
     }
 
     private class ButtonHandler implements ActionListener {
 
+        JFrame jFrame = new JFrame();
+        JTextArea jTextArea;
+
         @Override
         public void actionPerformed(ActionEvent e) {
+            String result = "";
+            int num = 1;
             // 0. name check
-            String[] name = applicantName.getText().split("\\s+");
-            boolean nameCheck = true;
-            boolean nameEmpty = false;
+            String[] name = applicantNameInput.getText().split("\\s+");
 
             if (name.length < 2) {
-                nameCheck = false;
-                if (applicantName.getText().length() == 0) {
-                    nameEmpty = true;
+                if (applicantNameInput.getText().length() == 0) {
+                    result += (Integer.toString(num) + ". You forgot to fill the name text field, Please fill it \n");
+                    num++;
+                } else {
+                    result += (Integer.toString(num) + ". You forgot to write your name or surname \n");
+                    num++;
                 }
             }
 
             // 1. empty field check
-            boolean degreeEmpty = false;
-            if (degree.getText().length() == 0) {
-                degreeEmpty = true;
+            if (degreeInput.getText().length() == 0) {
+                result += (Integer.toString(num) + ". You forgot to fill the degree text field, Please fill it \n");
+                num++;
             }
 
-            boolean attendedUniversityEmpty = false;
-            if (attendedUniversity.getText().length() == 0) {
-                attendedUniversityEmpty = true;
+            if (homeAddressInput.getText().length() == 0) {
+                result += (Integer.toString(num) + ". You forgot to fill the home address text field, Please fill it \n");
+                num++;
             }
 
-            boolean gpaEmpty = false;
-            if (gpa.getText().length() == 0) {
-                gpaEmpty = true;
+            if (personalStatementInput.getText().length() == 0) {
+                result += (Integer.toString(num) + ". You forgot to fill the personal statement text field, Please fill it \n");
+                num++;
             }
 
-            boolean homeAddressEmpty = false;
-            if (homeAddress.getText().length() == 0) {
-                homeAddressEmpty = true;
-            }
-
-            boolean personalStatementEmpty = false;
-            if (personalStatement.getText().length() == 0) {
-                personalStatementEmpty = true;
-            }
-
-            boolean majorEmpty = false;
-            if (major.getText().length() == 0) {
-                majorEmpty = true;
+            if (majorInput.getText().length() == 0) {
+                result += (Integer.toString(num) + ". You forgot to fill the major text field, Please fill it \n");
+                num++;
             }
 
             // 2. birth date format
-            boolean birthDateCheck = false;
-            boolean birthDateEmpty = false;
-            if(birthDate.getText().matches("\\d{2}-\\d{2}-\\d{4}")){
-                birthDateCheck = true;
+            if(birthDateInput.getText().matches("([0-9]{2})/([0-9]{2})/([0-9]{4})")){
             } else {
-                if (birthDate.getText().length() == 0) {
-                    birthDateEmpty = true;
+                if (birthDateInput.getText().length() == 0) {
+                    result += (Integer.toString(num) + ". You forgot to fill the birth date text field, Please fill it \n");
+                    num++;
+                } else {
+                    result += (Integer.toString(num) + ". Birthdate must be in '06/06/1995' format \n");
+                    num++;
                 }
             }
 
             // 3. email check
-            boolean emailCheck = false;
-            boolean emailEmpty = false;
             String regexEmail = "^(.+)@(.+)$";
             Pattern patternEmail = Pattern.compile(regexEmail);
-            Matcher matcherEmail = patternEmail.matcher(email.getText());
+            Matcher matcherEmail = patternEmail.matcher(emailInput.getText());
             if (matcherEmail.matches()) {
-                emailCheck = true;
             } else {
-                if (email.getText().length() == 0) {
-                    emailEmpty = true;
+                if (emailInput.getText().length() == 0) {
+                    result += (Integer.toString(num) + ". You forgot to fill the email text field, Please fill it \n");
+                    num++;
+                } else {
+                    result += (Integer.toString(num) + ". Email must be in example@some.some \n");
+                    num++;
                 }
             }
 
             // 4. phone number check
-            boolean phoneNumberCheck = false;
-            boolean phoneNumberEmpty = false;
             String regexPhone = "^[0-9\\s-]*$";
             Pattern patternPhone = Pattern.compile(regexPhone);
-            Matcher matcherPhone = patternPhone.matcher(phoneNumber.getText());
+            Matcher matcherPhone = patternPhone.matcher(phoneNumberInput.getText());
             if (matcherPhone.matches()) {
-                phoneNumberCheck = true;
             } else {
-                if (phoneNumber.getText().length() == 0) {
-                    phoneNumberEmpty = true;
+                if (phoneNumberInput.getText().length() == 0) {
+                    result += (Integer.toString(num) + ". You forgot to fill the phone number text field, Please fill it \n");
+                    num++;
+                } else {
+                    result += (Integer.toString(num) + ". Proper format for a phone number is ‘10 2158-0222’ \n");
+                    num++;
                 }
             }
 
-            // 5.
-
-            // 6. gpa range check
-            boolean gpaRangeCheck = true;
-            if (Integer.parseInt(gpa.getText()) < 0 || Integer.parseInt(gpa.getText()) > 4.5) {
-                gpaRangeCheck = false;
+            // 5. attended university & gpa 6. gpa range check
+            if (attendedUniversityInput.getText().length() == 0 || gpaInput.getText().length() == 0) {
+                result += (Integer.toString(num) + ". For graduate, you have to enter previous university and GPA \n");
+                num++;
+            } else {
+                int gpa_str = gpaInput.getText().trim().length();
+                if (gpa_str > 0) {
+                    double gpa_num = Double.parseDouble(gpaInput.getText().trim());
+                    if (gpa_num < 0 || gpa_num > 4.5) {
+                        result += (Integer.toString(num) + ". GPA must be between 0 and 4.5 \n");
+                        num++;
+                    }
+                }
             }
 
             // 7. personal statement
-            boolean personalStatementCheck = false;
-            if (personalStatement.getText().length() > 100) {
-                personalStatementCheck = true;
+            if (personalStatementInput.getText().length() < 100) {
+                result += (Integer.toString(num) + ". Your Personal Statement must be at least 100 words \n");
+                num++;
+            }
+
+            jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            jFrame.setSize(500, 300);
+            jFrame.setVisible(true);
+            jFrame.setLayout(new GridBagLayout());
+
+            jTextArea = new JTextArea();
+            if (result.length() == 0) {
+                jTextArea.setText("Successfully Submitted");
+                jFrame.setTitle("Success Message");
+            } else {
+                jTextArea.setText(result);
+                jFrame.setTitle("You have following problems");
+            }
+
+            JButton jButton = new JButton("OK");
+            jButton.addActionListener(new CloseHandler());
+
+            GridBagConstraints gbc = new GridBagConstraints();
+            gbc.gridwidth = GridBagConstraints.REMAINDER;
+            gbc.fill = GridBagConstraints.HORIZONTAL;
+
+            jFrame.add(jTextArea, gbc);
+            jFrame.add(jButton, gbc);
+        }
+
+        private class CloseHandler implements ActionListener{
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
             }
         }
     }
