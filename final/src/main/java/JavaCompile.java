@@ -218,7 +218,6 @@ public class JavaCompile extends JFrame {
             try (URLClassLoader classLoader = URLClassLoader.newInstance(new URL[] {
                 new File(System.getProperty("user.dir")).toURI().toURL()
             })) {
-                System.out.println("Present Project Directory : "+ System.getProperty("user.dir"));
                 Class<?> exampleClass = Class.forName("Problem1", true, classLoader);
                 Method mainMethod = exampleClass.getMethod("main", String[].class);
                 if (!Modifier.isStatic(mainMethod.getModifiers())) {
@@ -226,15 +225,13 @@ public class JavaCompile extends JFrame {
                 }
                 Object value = mainMethod.invoke(null, (Object) new String[0]);
                 System.out.println(value);
+                outputDescription.setText(byteArrayOutputStream.toString().replaceAll("\t", "  "));
+                compResult = "Compile Success: " + success;
+                outputDescription.append(compResult);
+                outputDescription.setCaretPosition(0);
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
-            outputDescription.setText(byteArrayOutputStream.toString().replaceAll("\t", "  "));
-            compResult = "Compile Success: " + success;
-            outputDescription.append(compResult);
-            outputDescription.setCaretPosition(0);
-
 
         } else {
             outputDescription.setText("No compilation possible - error");
