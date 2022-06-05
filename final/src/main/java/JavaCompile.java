@@ -5,7 +5,13 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
+import java.net.MalformedURLException;
 import java.net.URI;
+import java.net.URL;
+import java.net.URLClassLoader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -194,11 +200,11 @@ public class JavaCompile extends JFrame {
 
             // 2. Read File and Compile
             JavaSourceFromString javaString = new JavaSourceFromString(sourceName, sourceCode);
-            ArrayList<JavaSourceFromString> javaSourceFromStrings = new ArrayList<JavaSourceFromString>();
+            ArrayList<JavaSourceFromString> javaSourceFromStrings = new ArrayList<>();
             javaSourceFromStrings.add(javaString);
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(byteArrayOutputStream);
-            DiagnosticCollector<JavaFileObject> diagnosticsCollector = new DiagnosticCollector<JavaFileObject>();
+            DiagnosticCollector<JavaFileObject> diagnosticsCollector = new DiagnosticCollector<>();
 
             JavaCompiler.CompilationTask task = compiler.getTask(outputStreamWriter, null, diagnosticsCollector, null, null, javaSourceFromStrings);
             boolean success = task.call();
@@ -209,10 +215,27 @@ public class JavaCompile extends JFrame {
                 System.out.println(diagnostic.getMessage(null));
             }
 
+            try (URLClassLoader classLoader = URLClassLoader.newInstance(new URL[] {
+                new File(System.getProperty("user.dir")).toURI().toURL()
+            })) {
+                System.out.println("Present Project Directory : "+ System.getProperty("user.dir"));
+                Class<?> exampleClass = Class.forName("Problem1", true, classLoader);
+                Method mainMethod = exampleClass.getMethod("main", String[].class);
+                if (!Modifier.isStatic(mainMethod.getModifiers())) {
+                    throw new IllegalStateException("Main Method is not Static");
+                }
+                Object value = mainMethod.invoke(null, (Object) new String[0]);
+                System.out.println(value);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
             outputDescription.setText(byteArrayOutputStream.toString().replaceAll("\t", "  "));
             compResult = "Compile Success: " + success;
             outputDescription.append(compResult);
             outputDescription.setCaretPosition(0);
+
+
         } else {
             outputDescription.setText("No compilation possible - error");
             JOptionPane.showMessageDialog(this,

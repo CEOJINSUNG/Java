@@ -4,6 +4,7 @@ public class Compile {
     private String input;
     private String output;
     private String code;
+    private String solution;
 
     public int getId() {
         return id;
@@ -43,5 +44,13 @@ public class Compile {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public String getSolution() {
+        return solution;
+    }
+
+    public void setSolution(String solution) {
+        this.solution = solution;
     }
 }
